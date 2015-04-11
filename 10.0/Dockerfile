@@ -2,7 +2,7 @@
 FROM opensuse:13.2
 
 ENV MARIADB_MAJOR 10.0
-ENV MARIADB_VERSION 10.0.17-2.2
+ENV MARIADB_VERSION 10.0.17
 # Default password for root of mariadb
 ENV MYSQL_ROOT_PASSWORD mysecretpassword
 ENV MYSQL_INIT_FILE /tmp/mysql_init.sql
