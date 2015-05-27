@@ -5,7 +5,6 @@ ENV MARIADB_MAJOR 10.0
 ENV MARIADB_VERSION 10.0.17
 # Default password for root of mariadb
 ENV MYSQL_ROOT_PASSWORD mysecretpassword
-ENV MYSQL_INIT_FILE /tmp/mysql_init.sql
 ENV MYSQL_DATADIR /var/lib/mysql
 
 # Add repo for the latest mariadb
@@ -20,16 +19,13 @@ RUN zypper -n in --no-recommends mariadb-$MARIADB_VERSION net-tools \
 RUN mkdir -p /var/lib/mysql \
   && mkdir -p /var/log/mysql \
   && chown mysql:mysql /var/log/mysql
-#  && rm /etc/my.cnf
-
-# ADD etc/my.cnf /etc/my.cnf
 
 VOLUME /var/lib/mysql
 
-COPY scripts/db-init.sh /
+COPY docker-entrypoint.sh /
 
 # ENTRYPOINT
-ENTRYPOINT ["/db-init.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 EXPOSE 3306
-# CMD ["--init-file=$MYSQL_INIT_FILE"]
+CMD ["mysqld_safe"]
