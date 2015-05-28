@@ -1,5 +1,6 @@
 # This is a Dockerfile to build a opensuse image which run mariadb
 FROM opensuse:13.2
+MAINTAINER Mengz You <you.mengz@yahoo.com>
 
 ENV MARIADB_MAJOR 10.0
 ENV MARIADB_VERSION 10.0.17
@@ -16,7 +17,8 @@ RUN zypper -n in --no-recommends mariadb-$MARIADB_VERSION net-tools \
   && zypper clean --all
 
 # Config for mariadb
-RUN mkdir -p /var/lib/mysql \
+RUN rm -rf ${MYSQL_DATADIR} \
+  && mkdir -p ${MYSQL_DATADIR} \
   && mkdir -p /var/log/mysql \
   && chown mysql:mysql /var/log/mysql
 
