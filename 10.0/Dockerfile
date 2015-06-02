@@ -4,16 +4,15 @@ MAINTAINER Mengz You <you.mengz@yahoo.com>
 
 ENV MARIADB_MAJOR 10.0
 ENV MARIADB_VERSION 10.0.17
+ENV PCRE_VERSION 8.37
 # Default password for root of mariadb
 ENV MYSQL_ROOT_PASSWORD mysecretpassword
 
 # Add repo for the latest mariadb
-RUN zypper ar -f -r http://download.opensuse.org/repositories/server:/database/openSUSE_13.2/server:database.repo \
-  && zypper -n --gpg-auto-import-keys ref
-
-# Install packges
-RUN zypper -n in --no-recommends mariadb-$MARIADB_VERSION net-tools \
-  && zypper -n in libpcre1-8.37 \
+RUN zypper -q ar -f -r http://download.opensuse.org/repositories/server:/database/openSUSE_13.2/server:database.repo \
+  && zypper -qn --gpg-auto-import-keys ref \
+  && zypper -qn in -l --no-recommends mariadb-$MARIADB_VERSION net-tools \
+  && zypper -qn in -l libpcre1-$PCRE_VERSION \
   && zypper clean --all
 
 # Config for mariadb
