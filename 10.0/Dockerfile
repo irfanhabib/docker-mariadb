@@ -3,7 +3,7 @@ FROM mengzyou/docker-opensuse-base:latest
 MAINTAINER Mengz You <you.mengz@yahoo.com>
 
 ENV MARIADB_MAJOR 10.0
-ENV MARIADB_VERSION 10.0.17
+ENV MARIADB_VERSION 10.0.20
 # Default password for root of mariadb
 ENV MYSQL_ROOT_PASSWORD mysecretpassword
 
