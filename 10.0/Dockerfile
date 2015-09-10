@@ -1,9 +1,9 @@
 # This is a Dockerfile to build a opensuse image which run mariadb
 FROM mengzyou/docker-opensuse-base:latest
-MAINTAINER Mengz You <you.mengz@yahoo.com>
+MAINTAINER Mengz You <mengz.you@outlook.com>
 
 ENV MARIADB_MAJOR 10.0
-ENV MARIADB_VERSION 10.0.20
+ENV MARIADB_VERSION 10.0.21
 # Default password for root of mariadb
 ENV MYSQL_ROOT_PASSWORD mysecretpassword
 
